@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import Main from '../template/Main'
+//import CardImage from '../CardImage'
 
 const headerProps = {
     icon: 'users',
@@ -10,14 +11,14 @@ const headerProps = {
 
 const baseUrl = 'http://localhost:3001/users'
 const initialState = {
-    user: { name: '', email: '' },
+    user: { name: '', email: '',id: '',categoria: '',Preco: '',Marca: '' },
     list: []
 }
 
 export default class UserCrud extends Component {
-
+   
     state = { ...initialState }
-
+     
     componentWillMount() {
         axios(baseUrl).then(resp => {
             this.setState({ list: resp.data })
@@ -65,17 +66,6 @@ export default class UserCrud extends Component {
                                 placeholder="Digite o nome do produto" />
                         </div>
                     </div>
-
-                    <div className="col-12 col-md-6">
-                        <div className="form-group">
-                            <label>ID</label>
-                            <input type="text" className="form-control"
-                                name="email"
-                                value={this.state.user.email}
-                                onChange={e => this.updateField(e)}
-                                placeholder="Digite o e-mail..." />
-                        </div>
-                    </div>
                 </div>
 
                 <hr />
@@ -112,10 +102,11 @@ export default class UserCrud extends Component {
             <table className="table mt-4">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Nome</th>
-                        <th>Categories</th>
-                        <th>Brands</th>
+                    <th>Imagem</th>
+                    <th>Nome</th>
+                    <th>Preço</th>
+                    <th>Marca</th>
+                    <th>Categoria</th>
                     </tr>
                 </thead>
                 <tbody>
